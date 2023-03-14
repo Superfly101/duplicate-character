@@ -1,23 +1,24 @@
 import { Flex, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ErrorAlert from "./ErrorAlert";
 
 const NewCharacter = () => {
-  const [characterInputValue, setCharacterInputValue] = useState("");
   const [showError, setShowError] = useState(false);
+  const characterInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    if (!characterInputValue) {
+
+    const enteredCharacter = characterInputRef.current!.value;
+    if (enteredCharacter.trim() === "") {
       setShowError(true);
+      characterInputRef.current!.focus();
       return;
     }
     setShowError(false);
-    console.log(characterInputValue);
+    console.log(enteredCharacter);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setCharacterInputValue(event.target.value.trim());
   return (
     <section>
       <Flex
@@ -31,9 +32,18 @@ const NewCharacter = () => {
       >
         {showError && <ErrorAlert />}
         <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-          <FormControl isInvalid={showError}>
+          <FormControl>
             <FormLabel>Characters</FormLabel>
-            <Input placeholder="Enter Character" onChange={handleInputChange} />
+            <Input
+              placeholder="Enter Character"
+              ref={characterInputRef}
+              borderColor="#3182ce"
+              _focus={
+                showError
+                  ? { borderColor: "#E53E3E", boxShadow: "0 0 0 1px #E53E3E" }
+                  : {}
+              }
+            />
           </FormControl>
           <Button mt="4" colorScheme="teal" type="submit">
             Submit
