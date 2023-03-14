@@ -3,9 +3,16 @@ import { useState } from "react";
 
 const NewCharacter = () => {
   const [characterInputValue, setCharacterInputValue] = useState("");
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    if (!characterInputValue) {
+      setShowError(true);
+      return;
+    }
+    setShowError(true);
+    console.log(characterInputValue);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
