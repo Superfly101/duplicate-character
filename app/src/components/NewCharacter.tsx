@@ -1,5 +1,6 @@
 import { Flex, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import { useState } from "react";
+import ErrorAlert from "./ErrorAlert";
 
 const NewCharacter = () => {
   const [characterInputValue, setCharacterInputValue] = useState("");
@@ -11,7 +12,7 @@ const NewCharacter = () => {
       setShowError(true);
       return;
     }
-    setShowError(true);
+    setShowError(false);
     console.log(characterInputValue);
   };
 
@@ -19,9 +20,18 @@ const NewCharacter = () => {
     setCharacterInputValue(event.target.value.trim());
   return (
     <section>
-      <Flex maxW="35rem" mx="auto" mt="4" py="8" px="4">
+      <Flex
+        direction="column"
+        gap="4"
+        maxW="35rem"
+        mx="auto"
+        mt="4"
+        py="8"
+        px="4"
+      >
+        {showError && <ErrorAlert />}
         <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-          <FormControl>
+          <FormControl isInvalid={showError}>
             <FormLabel>Characters</FormLabel>
             <Input placeholder="Enter Character" onChange={handleInputChange} />
           </FormControl>
