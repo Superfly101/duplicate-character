@@ -1,9 +1,7 @@
+import DuplicateCharacter from "../components/DuplicateCharacter";
+
 const DuplicateCharacterPage = () => {
-  return (
-    <section>
-      <h2>This is the Duplicate Character page</h2>
-    </section>
-  );
+  return <DuplicateCharacter />;
 };
 
 export default DuplicateCharacterPage;

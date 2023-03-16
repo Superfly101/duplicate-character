@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/remove",
+    path: "/remove-duplicate",
     element: <DuplicateCharacterPage />,
   },
 ]);
