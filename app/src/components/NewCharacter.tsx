@@ -1,10 +1,14 @@
 import { Flex, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { CharacterContext } from "../context/character-context";
 import ErrorAlert from "./ErrorAlert";
 
 const NewCharacter = () => {
   const [showError, setShowError] = useState(false);
   const characterInputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const { saveCharacters } = useContext(CharacterContext);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -16,7 +20,8 @@ const NewCharacter = () => {
       return;
     }
     setShowError(false);
-    console.log(enteredCharacter);
+    saveCharacters(enteredCharacter);
+    navigate("/remove-duplicate");
   };
 
   return (
