@@ -29,7 +29,16 @@ const CharacterContextProvider = ({
     originalCharacters = input;
   };
 
-  const handleRemoveDuplicate = (char: string, index: number) => {};
+  const handleRemoveDuplicate = (char: string, index: number) => {
+    let result = "";
+    for (let i = 0; i < characters.length; i++) {
+      if (characters[i] !== char || i === index) {
+        result += characters[i];
+      }
+    }
+
+    setCharacters(result);
+  };
 
   const hasDuplicateCharacters = true;
 
