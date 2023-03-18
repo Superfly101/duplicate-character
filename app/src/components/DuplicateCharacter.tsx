@@ -1,16 +1,27 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Alert, AlertIcon } from "@chakra-ui/react";
 import { useContext } from "react";
 import { CharacterContext } from "../context/character-context";
 import CharacterItem from "./CharacterItem";
 
 const DuplicateCharacter = () => {
-  const { characters, removeDuplicateCharacters } =
-    useContext(CharacterContext);
+  const {
+    characters,
+    originalCharacters,
+    removeDuplicateCharacters,
+    hasDuplicateCharacters,
+  } = useContext(CharacterContext);
 
   const CHARACTER_LIST = characters.split("");
 
   return (
     <section>
+      {!hasDuplicateCharacters && (
+        <Alert status="success">
+          <AlertIcon />
+          All duplicates removed. Original string: {originalCharacters} New
+          string: {characters}
+        </Alert>
+      )}
       <Flex p="8" gap="8" wrap="wrap" maxW="70rem" mx="auto">
         {CHARACTER_LIST.map((char, index) => (
           <CharacterItem
