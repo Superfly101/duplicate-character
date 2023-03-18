@@ -1,7 +1,8 @@
-import { Flex, Alert, AlertIcon, Box, Button } from "@chakra-ui/react";
+import { Flex, Box, Button } from "@chakra-ui/react";
 import { useContext } from "react";
 import { CharacterContext } from "../context/character-context";
 import CharacterItem from "./CharacterItem";
+import SuccessAlert from "./SuccessAlert";
 
 const DuplicateCharacter = () => {
   const {
@@ -19,11 +20,7 @@ const DuplicateCharacter = () => {
         <Button colorScheme="blue">Go Back</Button>
       </Box>
       {!hasDuplicateCharacters && (
-        <Alert status="success">
-          <AlertIcon />
-          All duplicates removed. Original string: {originalCharacters} New
-          string: {characters}
-        </Alert>
+        <SuccessAlert output1={originalCharacters} output2={characters} />
       )}
       <Flex p="8" gap="8" wrap="wrap" maxW="70rem" mx="auto">
         {CHARACTER_LIST.map((char, index) => (
