@@ -6,15 +6,22 @@ import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DuplicateCharacterPage from "./routes/duplicate-character";
+import Root from "./routes/root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/remove-duplicate",
-    element: <DuplicateCharacterPage />,
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/remove-duplicate",
+        element: <DuplicateCharacterPage />,
+      },
+    ],
   },
 ]);
 
