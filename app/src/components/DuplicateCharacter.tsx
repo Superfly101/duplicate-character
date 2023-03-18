@@ -1,8 +1,12 @@
 import { Flex } from "@chakra-ui/react";
+import { useContext } from "react";
+import { CharacterContext } from "../context/character-context";
 import CharacterItem from "./CharacterItem";
 
 const DuplicateCharacter = () => {
-  const CHARACTER_LIST = "aabcaccda".split("");
+  const { characters } = useContext(CharacterContext);
+
+  const CHARACTER_LIST = characters.split("");
 
   return (
     <section>
