@@ -3,9 +3,10 @@ import { Flex, Heading, IconButton } from "@chakra-ui/react";
 
 type CardProps = {
   children: React.ReactNode;
+  onRemove: () => void;
 };
 
-const CharacterItem = ({ children }: CardProps) => {
+const CharacterItem = ({ children, onRemove }: CardProps) => {
   return (
     <Flex
       direction="column-reverse"
@@ -17,6 +18,7 @@ const CharacterItem = ({ children }: CardProps) => {
     >
       <Heading>{children}</Heading>
       <IconButton
+        onClick={onRemove}
         colorScheme="teal"
         variant="solid"
         aria-label="Delete duplicate character"
