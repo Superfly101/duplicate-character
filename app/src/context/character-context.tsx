@@ -46,3 +46,5 @@ const CharacterContextProvider = ({
     </CharacterContext.Provider>
   );
 };
+
+export default CharacterContextProvider;
