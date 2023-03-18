@@ -22,13 +22,11 @@ const CharacterContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [characters, setCharacters] = useState("");
-
-  let originalCharacters = "";
-
+  const [originalCharacters, setOriginalCharacters] = useState("");
   // Update Charactes and save copy of original characters
   const saveCharacters = (input: string) => {
     setCharacters(input);
-    originalCharacters = input;
+    setOriginalCharacters(input);
   };
 
   const removeDuplicateCharacters = (char: string, index: number) => {
