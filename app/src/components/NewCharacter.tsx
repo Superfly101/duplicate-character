@@ -50,7 +50,7 @@ const NewCharacter = () => {
               }
             />
           </FormControl>
-          <Button mt="4" colorScheme="teal" type="submit">
+          <Button mt="4" colorScheme="blue" type="submit">
             Submit
           </Button>
         </form>

@@ -1,4 +1,4 @@
-import { Flex, Alert, AlertIcon } from "@chakra-ui/react";
+import { Flex, Alert, AlertIcon, Box, Button } from "@chakra-ui/react";
 import { useContext } from "react";
 import { CharacterContext } from "../context/character-context";
 import CharacterItem from "./CharacterItem";
@@ -15,6 +15,9 @@ const DuplicateCharacter = () => {
 
   return (
     <section>
+      <Box p="4" px="8">
+        <Button colorScheme="blue">Go Back</Button>
+      </Box>
       {!hasDuplicateCharacters && (
         <Alert status="success">
           <AlertIcon />
