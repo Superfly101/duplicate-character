@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 
 type CharacterContextType = {
   characters: string;
+  originalCharacters: string;
   hasDuplicateCharacters: boolean;
   saveCharacters: (value: string) => void;
   removeDuplicateCharacters: (char: string, index: number) => void;
@@ -9,6 +10,7 @@ type CharacterContextType = {
 
 export const CharacterContext = createContext<CharacterContextType>({
   characters: "",
+  originalCharacters: "",
   hasDuplicateCharacters: true,
   saveCharacters: () => {},
   removeDuplicateCharacters: () => {},
@@ -21,7 +23,7 @@ const CharacterContextProvider = ({
 }) => {
   const [characters, setCharacters] = useState("");
 
-  let originalCharacters;
+  let originalCharacters = "";
 
   // Update Charactes and save copy of original characters
   const saveCharacters = (input: string) => {
@@ -29,7 +31,7 @@ const CharacterContextProvider = ({
     originalCharacters = input;
   };
 
-  const handleRemoveDuplicate = (char: string, index: number) => {
+  const removeDuplicateCharacters = (char: string, index: number) => {
     let result = "";
     for (let i = 0; i < characters.length; i++) {
       if (characters[i] !== char || i === index) {
@@ -40,13 +42,14 @@ const CharacterContextProvider = ({
     setCharacters(result);
   };
 
-  const hasDuplicateCharacters = true;
+  const hasDuplicateCharacters = characters.length !== new Set(characters).size;
 
   const contextValue: CharacterContextType = {
-    characters: characters,
+    characters,
+    originalCharacters,
     hasDuplicateCharacters,
-    saveCharacters: saveCharacters,
-    removeDuplicateCharacters: handleRemoveDuplicate,
+    saveCharacters,
+    removeDuplicateCharacters,
   };
 
   return (
