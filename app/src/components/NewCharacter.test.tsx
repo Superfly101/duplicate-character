@@ -38,4 +38,20 @@ describe("NewCharacter Component", () => {
     // Assert
     expect(screen.getByRole("alert")).toBeInTheDocument();
   });
+
+  test("error alert absent for non-empty input submission", () => {
+    // Arrange
+    render(<NewCharacter />, { wrapper: BrowserRouter });
+
+    // Act
+    const inputElement = screen.getByLabelText(/characters/i);
+    const buttonElement = screen.getByRole("button", { name: /submit/i });
+    act(() => {
+      userEvent.type(inputElement, "testing");
+      userEvent.click(buttonElement);
+    });
+
+    // Assert
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
 });
