@@ -4,6 +4,31 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import DuplicateCharacterPage from "./routes/duplicate-character";
+import Root from "./routes/root";
+import CharacterContextProvider from "./context/character-context";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <CharacterContextProvider>
+        <Root />
+      </CharacterContextProvider>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/remove-duplicate",
+        element: <DuplicateCharacterPage />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +36,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-      <App />
+      <RouterProvider router={router} />
     </ChakraProvider>
   </React.StrictMode>
 );
