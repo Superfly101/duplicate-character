@@ -9,7 +9,6 @@ const DuplicateCharacter = () => {
   const {
     characters,
     originalCharacters,
-    saveCharacters,
     removeDuplicateCharacters,
     hasDuplicateCharacters,
   } = useContext(CharacterContext);
@@ -19,8 +18,7 @@ const DuplicateCharacter = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    saveCharacters("");
-    navigate("/");
+    navigate(-1);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { Flex, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CharacterContext } from "../context/character-context";
 import ErrorAlert from "./ErrorAlert";
@@ -9,6 +9,12 @@ const NewCharacter = () => {
   const characterInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { saveCharacters } = useContext(CharacterContext);
+
+  // Reset context state when component is rerendered
+  useEffect(() => {
+    saveCharacters("");
+    console.log("Running Side effect");
+  }, []);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
