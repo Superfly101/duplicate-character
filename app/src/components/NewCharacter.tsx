@@ -18,7 +18,9 @@ const NewCharacter = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const enteredCharacter = characterInputRef.current!.value.trim();
+    const enteredCharacter = characterInputRef
+      .current!.value.trim()
+      .toLowerCase();
     if (enteredCharacter === "") {
       setShowError(true);
       characterInputRef.current!.focus();
