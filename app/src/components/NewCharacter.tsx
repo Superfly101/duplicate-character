@@ -13,7 +13,6 @@ const NewCharacter = () => {
   // Reset context state when component is rerendered
   useEffect(() => {
     saveCharacters("");
-    console.log("Running Side effect");
   }, []);
 
   const handleSubmit = (event: React.FormEvent) => {
