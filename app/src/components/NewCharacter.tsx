@@ -13,7 +13,7 @@ const NewCharacter = () => {
   // Reset context state when component is rerendered
   useEffect(() => {
     saveCharacters("");
-  }, []);
+  }, [saveCharacters]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
