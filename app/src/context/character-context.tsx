@@ -32,7 +32,7 @@ const CharacterContextProvider = ({
   const removeDuplicateCharacters = (char: string, index: number) => {
     let result = "";
     for (let i = 0; i < characters.length; i++) {
-      if (characters[i] !== char || i === index) {
+      if (characters[i].toLowerCase() !== char.toLowerCase() || i === index) {
         result += characters[i];
       }
     }
